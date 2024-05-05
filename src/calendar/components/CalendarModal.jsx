@@ -32,16 +32,16 @@ export function CalendarModal() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   
   const [formValues, setFormValues] = useState({
-    title: "Javi",
-    notes: "Preparar cena",
+    title: '',
+    notes: '',
     start: new Date(),
-    end: addHours(new Date(), 2),
+    end: addHours( new Date(), 2)
   });
 
   const titleClass = useMemo(() => {
     if (!formSubmitted) return;
 
-    return (formValues?.title?.length > 0) ? "is-valid" : "is-invalid";
+    return (formValues.title.length > 0) ? "" : "is-invalid";
   }, [formValues.title, formSubmitted]);
 
   useEffect(() => {
@@ -70,11 +70,15 @@ export function CalendarModal() {
     setFormSubmitted(true);
 
     const diff = differenceInSeconds(formValues.end, formValues.start);
+
     if (isNaN(diff) || diff <= 0) {
       Swal.fire("Fechas incorrectas", "Revisar fechas introducidas", "error");
       return;
     }
     if (formValues.title.length <= 0) return;
+
+    console.log(formValues);
+
     await startSavingEvent(formValues);
     closeDateModal();
     setFormSubmitted(false);

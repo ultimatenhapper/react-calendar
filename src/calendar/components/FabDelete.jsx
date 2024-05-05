@@ -8,8 +8,8 @@ export function FabDelete() {
   };
 
   return (
-    <button className="btn btn-danger fab-danger" style={{ display: hasEventSelected ? '' : 'none'}}>
-      <i className="fa fa-trash-alt" onClick={handleDelete}></i>
+    <button className="btn btn-danger fab-danger" style={{ display: hasEventSelected ? '' : 'none'}} onClick={handleDelete}>
+      <i className="fa fa-trash-alt" ></i>
     </button>
   );
 }
